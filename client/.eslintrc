@@ -1,0 +1,58 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "react-app",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "arrow-parens": "warn",
+    "no-console": "warn",
+    "no-debugger": "warn",
+    "indent": ["warn", 2],
+    "comma-dangle": ["warn", "only-multiline"],
+    "prefer-const": "warn",
+    "semi": ["warn", "never"],
+    "semi-spacing": [1, {
+      "before": false,
+      "after": true
+    }],
+    "key-spacing": ["warn", {
+      "beforeColon": false,
+      "afterColon": true
+    }],
+    "space-before-blocks": ["warn", {
+      "functions": "always",
+      "keywords": "always",
+      "classes": "always"
+    }],
+    "spaced-comment": ["warn", "always"],
+    "object-curly-spacing": ["warn", "always", { "objectsInObjects": false }],
+    "space-unary-ops": ["warn", {
+      "words": true,
+      "nonwords": false
+    }],
+    "space-infix-ops": "warn",
+    "block-spacing": ["warn", "always"],
+    "quotes": ["warn", "single"],
+    "jsx-quotes": ["warn", "prefer-double"],
+    "@typescript-eslint/no-inferrable-types": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "react/no-array-index-key": "warn",
+    "react/jsx-key": "warn",
+    "eol-last": ["warn", "always"],
+    "no-multiple-empty-lines": ["warn", { "max": 2, "maxEOF": 1, "maxBOF": 0 }],
+    "max-len": [
+      "warn",
+      {
+        "code": 130,
+        "tabWidth": 2,
+        "ignoreComments": true
+      }
+    ]
+  },
+  "ignorePatterns": ["webpack.config.js", "tailwind.config.js", "postcss.config.js"]
+}
