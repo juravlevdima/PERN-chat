@@ -2,11 +2,13 @@ import express, { Application } from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
+import passport from 'passport'
 
 import dbConnect from './services/postgres'
 import router from './routes'
 import errorHandler from './middleware/errorHandlingMiddleware'
 import defineModels from './models/defineModels'
+import jwtStrategy from './services/passport'
 
 dotenv.config()
 const port = process.env.PORT || 8080
@@ -17,6 +19,8 @@ defineModels()
 server.use(express.json())
 server.use(cookieParser())
 server.use(cors())
+passport.initialize()
+passport.use("jwt", jwtStrategy)
 
 server.use('/api/v1', router)
 

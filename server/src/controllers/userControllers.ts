@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken'
 import ApiError from '../errors/ApiError'
 import UserModel from '../models/UserModel'
 import bcrypt from 'bcrypt'
+import { IUserPublicData } from '../types/user.types'
 
 
 export const registration = async (req: Request, res: Response, next: NextFunction) => {
@@ -28,15 +29,33 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
   if (!comparePassword) return next(ApiError.unauthorized('Неверный email или пароль'))
 
   const token = jwt.sign(
-    { id: user.id, email: user.email, role: user.role },
+    { id: user.id },
     process.env.JWT_SECRET || 'secret',
     { expiresIn: '24h' }
   )
   res.cookie('token', token, { maxAge: 1000 * 60 * 60 * 24 })
-  return res.json({ message: 'Пользователь успешно авторизован', token })
+  return res.json({
+    message: 'Пользователь успешно авторизован',
+    user: { id: user.id, email: user.email, role: user.role },
+    token
+  })
 }
 
 
-export const authenticate = (req: Request, res: Response) => {
-  res.json({message: 'Пользователь авторизован'})
+export const authenticate = async (req: Request, res: Response, next: NextFunction) => {
+  const token = req?.cookies?.token
+  if (!token) return next(ApiError.unauthorized('Пользователь не авторизован'))
+
+  const secret = process.env.JWT_SECRET || 'secret'
+
+  try {
+    const decoded = jwt.verify(token, secret) as IUserPublicData
+    const { id } = decoded
+    const user = await UserModel.findByPk(id)
+    if (!user) return next(ApiError.unauthorized('Пользователь не авторизован'))
+    const { email, role } = user
+    return res.json({ message: 'Пользователь авторизован', user: { id, email, role }})
+  } catch {
+    return next(ApiError.unauthorized('Пользователь не авторизован'))
+  }
 }
