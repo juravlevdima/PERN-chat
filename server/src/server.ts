@@ -1,18 +1,21 @@
 import express, { Application } from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import cookieParser from 'cookie-parser'
 
 import dbConnect from './services/postgres'
 import router from './routes'
 import errorHandler from './middleware/errorHandlingMiddleware'
-
-const models = require('./models/models')
+import defineModels from './models/defineModels'
 
 dotenv.config()
 const port = process.env.PORT || 8080
 const server: Application = express()
 
+defineModels()
+
 server.use(express.json())
+server.use(cookieParser())
 server.use(cors())
 
 server.use('/api/v1', router)
