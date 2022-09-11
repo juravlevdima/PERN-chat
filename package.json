@@ -4,11 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "setup": "yarn && yarn --cwd client install && yarn --cwd server install",
+    "server:dev": "yarn --cwd server run dev",
+    "server:start": "yarn --cwd server run start",
+    "client:dev": "yarn --cwd client run dev",
+    "client:start": "yarn --cwd client run start",
+    "dev": "concurrently \"yarn run server:dev\" \"yarn run client:dev\" "
   },
   "author": "Juravlev D",
   "license": "ISC",
   "dependencies": {
-    "cross-env": "^7.0.3"
+    "concurrently": "^7.4.0"
   }
 }

@@ -79,6 +79,13 @@ module.exports = {
     historyApiFallback: true,
     port: process.env.PORT || 3000,
     hot: true,
+    proxy: {
+      '/api': 'http://localhost:8080',
+      '/socket.io': {
+        target: 'http://localhost:8080',
+        ws: true,
+      },
+    },
   },
   devtool: isProd ? false : "source-map",
   entry: {

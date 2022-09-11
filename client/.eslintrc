@@ -10,7 +10,7 @@
   ],
   "rules": {
     "arrow-parens": "warn",
-    "no-console": "warn",
+    "no-console": "off",
     "no-debugger": "warn",
     "indent": ["warn", 2],
     "comma-dangle": ["warn", "only-multiline"],

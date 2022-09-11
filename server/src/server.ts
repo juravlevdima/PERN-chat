@@ -1,4 +1,6 @@
 import express, { Application } from 'express'
+import http from 'http'
+import { Server } from 'socket.io'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
@@ -12,19 +14,25 @@ import jwtStrategy from './services/passport'
 
 dotenv.config()
 const port = process.env.PORT || 8080
-const server: Application = express()
+const app: Application = express()
+const server = http.createServer(app)
+const io = new Server(server, { cors: { origin: '*', }})
 
 defineModels()
 
-server.use(express.json())
-server.use(cookieParser())
-server.use(cors())
+app.use(express.json())
+app.use(cookieParser())
+app.use(cors())
 passport.initialize()
-passport.use("jwt", jwtStrategy)
+passport.use('jwt', jwtStrategy)
 
-server.use('/api/v1', router)
+app.use('/api/v1', router)
 
-server.use(errorHandler)
+app.use(errorHandler)
+
+io.on('connection', (socket) => {
+  console.log('socket connected\n', socket.id)
+})
 
 dbConnect()
   .then(() => server.listen(port, () => {
