@@ -1,16 +1,23 @@
 import { FC, useEffect } from 'react'
 import AppRoutes from './AppRoutes'
 import { useAppDispatch, useAppSelector } from './hooks/reduxHooks'
-import { authenticate } from './store/user/user.actions'
+import { authenticate, checkToken } from './store/user/user.actions'
 import Spinner from './components/common/Spinner'
+
 
 const App: FC = () => {
   const dispatch = useAppDispatch()
-  const { isLoading } = useAppSelector((s) => s.user)
+  const { isLoading, token } = useAppSelector((s) => s.user)
 
   useEffect(() => {
-    dispatch(authenticate())
+    dispatch(checkToken())
   }, [dispatch])
+
+  useEffect(() => {
+    if (token) {
+      dispatch(authenticate())
+    }
+  }, [dispatch, token])
 
   if (isLoading) {
     return <Spinner/>

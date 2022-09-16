@@ -9,4 +9,5 @@ export interface IUser {
 export interface IAuthenticateRes {
   message: string
   user: IUser
+  token?: string
 }

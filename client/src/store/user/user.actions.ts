@@ -18,5 +18,12 @@ export const authenticate = () => (dispatch: AppDispatch) => {
   axios
     .get<IAuthenticateRes>('/api/v1/user/authenticate')
     .then(({ data }) => dispatch(userActions.userFetchingSuccess(data.user)))
-    .catch(() => dispatch(userActions.userFetchingError()))
+    .catch((e) => dispatch(userActions.userFetchingError(e?.response?.data?.message || 'Неизвестная ошибка')))
+}
+
+export const login = (email: string, password: string) => (dispatch: AppDispatch) => {
+  dispatch(userActions.userFetching())
+  axios.post<IAuthenticateRes>('/api/v1/user/login', { email, password })
+    .then(({ data }) => dispatch((userActions.userFetchingSuccess(data.user))))
+    .catch((e) => dispatch(userActions.userFetchingError(e?.response?.data?.message || 'Неизвестная ошибка')))
 }

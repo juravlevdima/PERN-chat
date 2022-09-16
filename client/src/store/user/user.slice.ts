@@ -6,13 +6,15 @@ interface IUserState {
   token: string | null
   isLoading: boolean
   isAuth: boolean
+  error: string | null
 }
 
 const initialState: IUserState = {
   user: null,
   token: null,
   isLoading: false,
-  isAuth: false
+  isAuth: false,
+  error: null
 }
 
 const userSlice = createSlice({
@@ -29,11 +31,13 @@ const userSlice = createSlice({
       state.isLoading = false
       state.isAuth = true
       state.user = action.payload
+      state.error = null
     },
-    userFetchingError(state) {
+    userFetchingError(state, action: PayloadAction<string>) {
       state.isLoading = false
       state.isAuth = false
       state.user = null
+      state.error = action.payload
     }
   }
 })

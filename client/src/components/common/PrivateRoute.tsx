@@ -11,7 +11,11 @@ const PrivateRoute: FC<propTypes> = ({ children, roles: accessRoles }) => {
   const { isAuth } = useAppSelector((s) => s.user)
   const role = useAppSelector((s) => s.user.user?.role)
 
-  return isAuth && role && accessRoles?.includes(role)
+  if (isAuth && accessRoles && role && accessRoles.includes(role)) {
+    return children
+  }
+
+  return isAuth
     ? children
     : <Navigate to="/sign-in" replace />
 }
