@@ -6,6 +6,7 @@ import MessageModel from './MessageModel'
 interface IUserModel extends Model<InferAttributes<IUserModel>, InferCreationAttributes<IUserModel>> {
   id: CreationOptional<number>
   email: string
+  name: string
   password: string
   role: string
 }
@@ -17,6 +18,7 @@ const UserModel = sequelize.define<IUserModel>('user', {
     autoIncrement: true
   },
   email: { type: DataTypes.STRING, unique: true },
+  name: { type: DataTypes.STRING },
   password: { type: DataTypes.STRING },
   role: { type: DataTypes.STRING, defaultValue: 'USER' },
 })

@@ -1,0 +1,11 @@
+.button {
+  @apply transition duration-300 ease-in-out text-white font-semibold py-2 px-8 rounded;
+}
+
+.input {
+  @apply w-full text-xl text-center border-2 rounded-lg focus:border-blue-500 mb-2;
+}
+
+.errorMessage {
+  @apply text-red-500 text-center -mt-2 mb-2;
+}

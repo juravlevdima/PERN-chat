@@ -27,6 +27,9 @@ const userSlice = createSlice({
     userFetching(state) {
       state.isLoading = true
     },
+    resetError(state) {
+      state.error = null
+    },
     userFetchingSuccess(state, action: PayloadAction<IUser>) {
       state.isLoading = false
       state.isAuth = true

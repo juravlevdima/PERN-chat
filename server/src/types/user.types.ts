@@ -1,5 +1,5 @@
 export interface IUserPublicData {
-  id: number
+  readonly id: number
   email: string
   role: string
   iat?: number

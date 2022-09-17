@@ -1,6 +1,8 @@
 import { FC, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
 import { login } from '../../store/user/user.actions'
+import style from './auth.module.scss'
 
 const SignIn: FC = () => {
   const dispatch = useAppDispatch()
@@ -18,29 +20,30 @@ const SignIn: FC = () => {
       <div className="flex items-center justify-center h-screen w-screen">
         <div className="w-4/5 md:w-1/2 lg:w-1/3 p-4 rounded-lg custom-shadow">
           <div className="text-center text-xl font-semibold pb-2">Вход</div>
-          <hr/>
+          <hr className="mb-2"/>
           <input
             autoFocus={true}
             type="text"
             placeholder="Введите email"
-            className="my-2 w-full text-xl text-center border-2 rounded-lg focus:border-blue-500"
+            className={style.input}
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
           <input
             type="password"
             placeholder="Введите пароль"
-            className="mb-2 w-full text-xl text-center border-2 rounded-lg focus:border-blue-500"
+            className={style.input}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <hr/>
-          <div className="text-center my-4">
+          <div className="flex justify-center text-center my-4">
+            <Link to="/sign-up" className={`${style.button} bg-blue-700 hover:bg-blue-900 mr-3`}>
+              Регистрация
+            </Link>
             <button
-              type="button"
-              className="transition duration-300 ease-in-out bg-green-700
-                hover:bg-green-900 text-white font-semibold py-2 px-8 rounded
-                disabled:bg-gray-500 disabled:cursor-not-allowed"
+              className={`${style.button} bg-green-700 hover:bg-green-900
+                disabled:bg-gray-500 disabled:cursor-not-allowed`}
               onClick={signInClick}
               disabled={!(email && password)}
             >

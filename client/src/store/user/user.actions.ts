@@ -7,9 +7,9 @@ import { userActions } from './user.slice'
 const cookies = new Cookies()
 
 
-export const checkToken = () => (dispatch: AppDispatch) => {
+export const checkToken = ()  => {
   const token = cookies.get('token')
-  dispatch(userActions.setToken(token))
+  return userActions.setToken(token)
 }
 
 
