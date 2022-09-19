@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import ApiError from '../errors/ApiError'
 import UserModel from '../models/UserModel'
 import bcrypt from 'bcrypt'
-import { IUserPublicData } from '../types/user.types'
+import { IDecodedToken, IUserPublicData } from '../types/user.types'
 
 
 export const registration = async (req: Request, res: Response, next: NextFunction) => {
@@ -49,7 +49,7 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
   const secret = process.env.JWT_SECRET || 'secret'
 
   try {
-    const decoded = jwt.verify(token, secret) as IUserPublicData
+    const decoded = jwt.verify(token, secret) as IDecodedToken
     const { id } = decoded
     const user = await UserModel.findByPk(id)
     if (!user) return next(ApiError.unauthorized('Пользователь не авторизован'))

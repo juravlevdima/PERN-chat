@@ -1,10 +1,8 @@
 export interface IUser {
-  id: number
+  readonly id: number
   email: string
   name: string
   role: string
-  iat?: number
-  exp?: number
 }
 
 export interface IAuthenticateRes {
