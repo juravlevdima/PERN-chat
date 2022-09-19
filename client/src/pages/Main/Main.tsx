@@ -1,21 +1,23 @@
-import { FC } from 'react'
-// import io from 'socket.io-client'
-// import axios from 'axios'
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-// const socket = io('http://localhost:8080/')
+import { FC, useContext, useEffect } from 'react'
+import Layout from '../../components/Layout/Layout'
+import RoomList from '../../components/AsideMenus/RoomList'
+import Chat from '../../components/Chat/Chat'
+import UserList from '../../components/AsideMenus/UserList'
+import { ISocketContext, SocketContext } from '../../socket/socket.io'
 
 const Main: FC = () => {
-  // useEffect(() => {
-  //   axios('/api/v1/user/authenticate')
-  //     .then(({ data }) => console.log(data))
-  //     .catch((e) => console.log(e?.response?.data?.message || 'error'))
-  // }, [])
+  const { userJoin } = useContext(SocketContext) as ISocketContext
+
+  useEffect(() => {
+    userJoin()
+  }, [userJoin])
 
   return (
-    <div className="text-center py-10">
-      App Main Page
-    </div>
+    <Layout>
+      <RoomList/>
+      <Chat/>
+      <UserList/>
+    </Layout>
   )
 }
 

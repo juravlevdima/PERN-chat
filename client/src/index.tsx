@@ -7,17 +7,20 @@ import store from './store'
 
 import './style/tailwind.css'
 import './style/style.scss'
+import SocketProvider from './socket/socket.io'
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById('root') as HTMLElement,
 )
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
+  // <React.StrictMode>
+  <Provider store={store}>
+    <BrowserRouter>
+      <SocketProvider>
         <App/>
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
+      </SocketProvider>
+    </BrowserRouter>
+  </Provider>,
+  // </React.StrictMode>
 )

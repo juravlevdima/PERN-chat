@@ -10,11 +10,9 @@ const App: FC = () => {
   const { isLoading, token } = useAppSelector((s) => s.user)
 
   useEffect(() => {
-    dispatch(checkToken())
-  }, [dispatch])
-
-  useEffect(() => {
-    if (token) {
+    if (!token) {
+      dispatch(checkToken())
+    } else {
       dispatch(authenticate())
     }
   }, [dispatch, token])
