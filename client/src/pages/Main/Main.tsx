@@ -6,15 +6,15 @@ import UserList from '../../components/AsideMenus/UserList'
 import { ISocketContext, SocketContext } from '../../socket/socket.io'
 
 const Main: FC = () => {
-  const { userJoin, joinedUsers } = useContext(SocketContext) as ISocketContext
+  const { userJoin, updateUserList } = useContext(SocketContext) as ISocketContext
 
   useEffect(() => {
     userJoin()
   }, [userJoin])
 
   useEffect(() => {
-    joinedUsers()
-  }, [joinedUsers])
+    updateUserList()
+  }, [updateUserList])
 
   return (
     <Layout>

@@ -5,6 +5,10 @@ export interface IUserPublicData {
   name: string
 }
 
+export interface IJoinedUser {
+  user: IUserPublicData
+}
+
 export interface IDecodedToken {
   readonly id: number
   iat?: number

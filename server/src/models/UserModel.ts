@@ -1,6 +1,7 @@
 import { sequelize } from '../services/postgres'
 import { DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize'
 import bcrypt from 'bcrypt'
+import MessageModel from './MessageModel'
 
 interface IUserModel extends Model<InferAttributes<IUserModel>, InferCreationAttributes<IUserModel>> {
   id: CreationOptional<number>
@@ -25,5 +26,8 @@ const UserModel = sequelize.define<IUserModel>('user', {
 UserModel.beforeCreate(async (user: IUserModel) => {
   user.password = await bcrypt.hash(user.password, 10)
 })
+
+UserModel.hasMany(MessageModel)
+MessageModel.belongsTo(UserModel)
 
 export default UserModel
