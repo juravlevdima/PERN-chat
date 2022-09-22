@@ -6,7 +6,7 @@ import UserList from '../../components/AsideMenus/UserList'
 import { ISocketContext, SocketContext } from '../../socket/socket.io'
 
 const Main: FC = () => {
-  const { userJoin, updateUserList } = useContext(SocketContext) as ISocketContext
+  const { userJoin, updateUserList, watchRoomList } = useContext(SocketContext) as ISocketContext
 
   useEffect(() => {
     userJoin()
@@ -14,7 +14,8 @@ const Main: FC = () => {
 
   useEffect(() => {
     updateUserList()
-  }, [updateUserList])
+    watchRoomList()
+  }, [updateUserList, watchRoomList])
 
   return (
     <Layout>

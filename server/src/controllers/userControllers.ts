@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import ApiError from '../errors/ApiError'
 import UserModel from '../models/UserModel'
 import bcrypt from 'bcrypt'
-import { IDecodedToken, IUserPublicData } from '../types/user.types'
+import { IDecodedToken } from '../types/user.types'
 
 
 export const registration = async (req: Request, res: Response, next: NextFunction) => {

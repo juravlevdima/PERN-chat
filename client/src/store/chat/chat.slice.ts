@@ -1,12 +1,15 @@
 import { IUser } from '../../types/user.types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { IRoom } from '../../types/chat.types'
 
 interface IChatState {
   userList: Array<IUser>
+  roomsList: Array<IRoom>
 }
 
 const initialState: IChatState = {
-  userList: []
+  userList: [],
+  roomsList: []
 }
 
 const chatSlice = createSlice({
@@ -15,6 +18,9 @@ const chatSlice = createSlice({
   reducers: {
     updateUserList(state, action: PayloadAction<IUser[]>) {
       state.userList = action.payload
+    },
+    updateRoomsList(state, action: PayloadAction<IRoom[]>) {
+      state.roomsList = action.payload
     }
   }
 })

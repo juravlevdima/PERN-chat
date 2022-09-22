@@ -1,6 +1,7 @@
 const defineModels = (): void => {
-  const UserModel = require('./UserModel')
-  const MessageModel = require('./MessageModel')
+  require('./UserModel')
+  require('./RoomModel')
+  require('./MessageModel')
 }
 
 export default defineModels

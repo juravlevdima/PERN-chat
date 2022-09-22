@@ -7,6 +7,8 @@ import { chatActions } from '../store/chat/chat.slice'
 export interface ISocketContext {
   userJoin: () => void
   updateUserList: () => void
+  createRoom: (name: string) => void
+  watchRoomList: () => void
 }
 
 export const socket: Socket = io()
@@ -34,9 +36,26 @@ const SocketProvider: FC<PropsWithChildren> = ({ children }) => {
     socket.on('user:disconnected', updateListener)
   }
 
+  const createRoom = (name: string) => {
+    socket.emit('room:create', name)
+  }
+
+  const watchRoomList = () => {
+    socket.emit('room:get_list')
+    socket.on('room:update_list', (rooms) => {
+
+      console.log(rooms)
+
+      dispatch(chatActions.updateRoomsList(rooms))
+    })
+  }
+
+
   const ws = {
     userJoin,
-    updateUserList
+    updateUserList,
+    createRoom,
+    watchRoomList
   }
 
   return (
