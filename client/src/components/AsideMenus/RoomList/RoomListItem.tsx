@@ -1,7 +1,7 @@
 import { FC, memo } from 'react'
 import { useAppDispatch } from '../../../hooks/reduxHooks'
-import { chatActions } from '../../../store/chat/chat.slice'
 import { IRoom } from '../../../types/chat.types'
+import { changeRoom } from '../../../store/chat/chat.actions'
 
 type propTypes = {
   room: IRoom
@@ -13,7 +13,7 @@ const RoomListItem: FC<propTypes> = ({ room, currentRoom }) => {
 
   return (
     <li className={currentRoom === room.id ? 'font-bold' : ''}>
-      <button onClick={() => dispatch(chatActions.setCurrentRoom(room.id))}>
+      <button onClick={() => dispatch(changeRoom(room, currentRoom))}>
         {room.name}
       </button>
     </li>

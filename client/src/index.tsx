@@ -7,7 +7,7 @@ import store from './store'
 
 import './style/tailwind.css'
 import './style/style.scss'
-import SocketProvider from './socket/socket.io'
+import SocketProvider from './socket/SocketProvider'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

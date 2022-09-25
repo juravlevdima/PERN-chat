@@ -1,5 +1,5 @@
 import { FC, useContext, useState } from 'react'
-import { ISocketContext, SocketContext } from '../../../socket/socket.io'
+import { ISocketContext, SocketContext } from '../../../socket/SocketProvider'
 import { useAppSelector } from '../../../hooks/reduxHooks'
 import RoomListItem from './RoomListItem'
 

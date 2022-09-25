@@ -8,7 +8,6 @@ import { IRoomWithMessages } from '../types/chat.types'
 const onlineUsers = new Map()
 
 const listenSocketEndpoints = (io: Server) => {
-
   io.on('connection', (socket: Socket) => {
     socket.on('user:join', ({ user }: IJoinedUser) => {
       onlineUsers.set(socket.id, user)
@@ -16,22 +15,26 @@ const listenSocketEndpoints = (io: Server) => {
       io.sockets.emit('user:joined', users)
     })
 
+
     socket.on('disconnect', () => {
       onlineUsers.delete(socket.id)
       const users = [...onlineUsers.values()]
       io.sockets.emit('user:disconnected', users)
     })
 
+
     socket.on('room:get_list', async () => {
       const roomList = await RoomModel.findAll()
       socket.emit('room:update_list', roomList)
     })
+
 
     socket.on('room:create', async (name: string) => {
       await RoomModel.create({ name })
       const roomList = await RoomModel.findAll()
       io.sockets.emit('room:update_list', roomList)
     })
+
 
     socket.on('room:send_message', async ({ text, userId, roomId }) => {
       // @ts-ignore
@@ -46,10 +49,13 @@ const listenSocketEndpoints = (io: Server) => {
         ]
       })
 
-      io.sockets.emit('room:update_room_messages', messages)
+      io.sockets.in(String(roomId)).emit('room:update_room_messages', messages)
     })
 
-    socket.on('room:get_messages', async (roomId: number) => {
+
+    socket.on('room:get_messages', async ({ roomId, oldRoom }) => {
+      await socket.leave(String(oldRoom))
+      await socket.join(String(roomId))
       const room = await RoomModel.findByPk(roomId, {
         include: {
           model: MessageModel,
@@ -59,7 +65,7 @@ const listenSocketEndpoints = (io: Server) => {
       }) as IRoomWithMessages
 
       if (room) {
-        io.sockets.emit('room:update_room_messages', room.messages)
+        socket.emit('room:update_room_messages', room.messages)
       }
     })
   })

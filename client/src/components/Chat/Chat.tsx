@@ -1,6 +1,6 @@
 import { FC, useContext, useState } from 'react'
 import { useAppSelector } from '../../hooks/reduxHooks'
-import { ISocketContext, SocketContext } from '../../socket/socket.io'
+import { ISocketContext, SocketContext } from '../../socket/SocketProvider'
 
 const Chat: FC = () => {
   const { sendMessage } = useContext(SocketContext) as ISocketContext

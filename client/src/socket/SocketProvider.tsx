@@ -10,9 +10,9 @@ export interface ISocketContext {
   updateUserList: () => void
   createRoom: (name: string) => void
   getRooms: () => void
-  getRoomMessages: (currentRoom: number | null) => void
   sendMessage: (text: string) => void
 }
+
 
 export const socket: Socket = io()
 
@@ -64,16 +64,10 @@ const SocketProvider: FC<PropsWithChildren> = ({ children }) => {
   }, [])
 
 
-  const getRoomMessages = useCallback((currentRoom: number | null) => {
-    socket.emit('room:get_messages', currentRoom)
-  }, [])
-
-
   const ws = {
     socketInitialize,
     updateUserList,
     createRoom,
-    getRoomMessages,
     getRooms,
     sendMessage
   }
