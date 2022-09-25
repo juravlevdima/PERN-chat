@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "start": "cross-env NODE_ENV=production yarn run build && webpack serve --open",
+    "start": "cross-env NODE_ENV=production webpack serve --open",
     "dev": "cross-env NODE_ENV=development webpack serve --open",
     "build": "cross-env NODE_ENV=production webpack",
     "lint:fix": "eslint './src/**/*.{ts,tsx,js,jsx}' --fix"
