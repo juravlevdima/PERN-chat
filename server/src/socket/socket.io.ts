@@ -3,10 +3,12 @@ import { IJoinedUser } from '../types/user.types'
 import RoomModel from '../models/RoomModel'
 import MessageModel from '../models/MessageModel'
 import UserModel from '../models/UserModel'
+import { IRoomWithMessages } from '../types/chat.types'
 
 const onlineUsers = new Map()
 
 const listenSocketEndpoints = (io: Server) => {
+
   io.on('connection', (socket: Socket) => {
     socket.on('user:join', ({ user }: IJoinedUser) => {
       onlineUsers.set(socket.id, user)
@@ -21,27 +23,44 @@ const listenSocketEndpoints = (io: Server) => {
     })
 
     socket.on('room:get_list', async () => {
-      // const roomList = await RoomModel.findAll({ include: [{ all: true, nested: true }] })
-      const roomList = await RoomModel.findAll({
-        include: {
-          model: MessageModel,
-          as: 'messages',
-          include: [{ model: UserModel, as: 'user', attributes: ['name'] }]
-        }
-      })
+      const roomList = await RoomModel.findAll()
       socket.emit('room:update_list', roomList)
     })
 
     socket.on('room:create', async (name: string) => {
       await RoomModel.create({ name })
-      const roomList = await RoomModel.findAll({
+      const roomList = await RoomModel.findAll()
+      io.sockets.emit('room:update_list', roomList)
+    })
+
+    socket.on('room:send_message', async ({ text, userId, roomId }) => {
+      // @ts-ignore
+      await MessageModel.create({ text, userId, roomId })
+      const messages = await MessageModel.findAll({
+        // @ts-ignore
+        where: { roomId },
+        attributes: ['id', 'text', 'createdAt'],
+        include: [
+          { model: RoomModel, as: 'room' },
+          { model: UserModel, as: 'user', attributes: ['name'] }
+        ]
+      })
+
+      io.sockets.emit('room:update_room_messages', messages)
+    })
+
+    socket.on('room:get_messages', async (roomId: number) => {
+      const room = await RoomModel.findByPk(roomId, {
         include: {
           model: MessageModel,
           as: 'messages',
           include: [{ model: UserModel, as: 'user', attributes: ['name'] }]
         }
-      })
-      io.sockets.emit('room:update_list', roomList)
+      }) as IRoomWithMessages
+
+      if (room) {
+        io.sockets.emit('room:update_room_messages', room.messages)
+      }
     })
   })
 }

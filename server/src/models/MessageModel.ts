@@ -1,7 +1,7 @@
 import { sequelize } from '../services/postgres'
 import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize'
 
-interface IMessageModel extends Model<InferAttributes<IMessageModel>, InferCreationAttributes<IMessageModel>> {
+export interface IMessageModel extends Model<InferAttributes<IMessageModel>, InferCreationAttributes<IMessageModel>> {
   id: CreationOptional<number>
   text: string
 }

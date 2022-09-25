@@ -2,7 +2,7 @@ import { sequelize } from '../services/postgres'
 import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes, Model } from 'sequelize'
 import MessageModel from './MessageModel'
 
-interface IRoomModel extends Model<InferAttributes<IRoomModel>, InferCreationAttributes<IRoomModel>> {
+export interface IRoomModel extends Model<InferAttributes<IRoomModel>, InferCreationAttributes<IRoomModel>> {
   id: CreationOptional<number>
   name: string
 }

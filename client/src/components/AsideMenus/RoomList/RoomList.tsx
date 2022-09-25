@@ -1,10 +1,11 @@
 import { FC, useContext, useState } from 'react'
-import { ISocketContext, SocketContext } from '../../socket/socket.io'
-import { useAppSelector } from '../../hooks/reduxHooks'
+import { ISocketContext, SocketContext } from '../../../socket/socket.io'
+import { useAppSelector } from '../../../hooks/reduxHooks'
+import RoomListItem from './RoomListItem'
 
 const RoomList: FC = () => {
   const { createRoom } = useContext(SocketContext) as ISocketContext
-  const { roomsList } = useAppSelector((s) => s.chat)
+  const { roomsList, currentRoom } = useAppSelector((s) => s.chat)
   const [newRoom, setNewRoom] = useState('')
 
   return (
@@ -18,7 +19,7 @@ const RoomList: FC = () => {
 
       <ul>
         {roomsList.map((room) => (
-          <li key={room.id}>{room.name}</li>
+          <RoomListItem key={room.id} room={room} currentRoom={currentRoom}/>
         ))}
       </ul>
     </div>

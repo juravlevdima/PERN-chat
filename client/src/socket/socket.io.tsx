@@ -1,14 +1,17 @@
 import io, { Socket } from 'socket.io-client'
-import { createContext, FC, PropsWithChildren } from 'react'
+import { createContext, FC, PropsWithChildren, useCallback } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
 import { IUser } from '../types/user.types'
 import { chatActions } from '../store/chat/chat.slice'
+import { IMessage, IRoom } from '../types/chat.types'
 
 export interface ISocketContext {
-  userJoin: () => void
+  socketInitialize: () => void
   updateUserList: () => void
   createRoom: (name: string) => void
-  watchRoomList: () => void
+  getRooms: () => void
+  getRoomMessages: (currentRoom: number | null) => void
+  sendMessage: (text: string) => void
 }
 
 export const socket: Socket = io()
@@ -18,12 +21,31 @@ export const SocketContext = createContext<ISocketContext | null>(null)
 const SocketProvider: FC<PropsWithChildren> = ({ children }) => {
   const dispatch = useAppDispatch()
   const { user } = useAppSelector((s) => s.user)
+  const { currentRoom } = useAppSelector((s) => s.chat)
 
-  const userJoin = () => {
+
+  const socketInitialize = useCallback(() => {
     socket.emit('user:join', { user })
+    socket.on('room:update_list', (rooms: IRoom[]) => {
+      dispatch(chatActions.updateRoomsList(rooms))
+    })
+    socket.on('room:update_room_messages', (messages: IMessage[]) => {
+      dispatch(chatActions.setRoomMessages(messages))
+    })
+  }, [dispatch, user])
+
+
+  const createRoom = (name: string) => {
+    socket.emit('room:create', name)
   }
 
-  const updateUserList = () => {
+
+  const sendMessage = (text: string) => {
+    socket.emit('room:send_message', { text, userId: user?.id, roomId: currentRoom })
+  }
+
+
+  const updateUserList = useCallback(() => {
     const updateListener = (users: Array<IUser>) => {
       const userList = users.filter((user, idx, self) => (
         idx === self.findIndex((it) => it.id === user.id)
@@ -34,28 +56,26 @@ const SocketProvider: FC<PropsWithChildren> = ({ children }) => {
 
     socket.on('user:joined', updateListener)
     socket.on('user:disconnected', updateListener)
-  }
+  }, [dispatch])
 
-  const createRoom = (name: string) => {
-    socket.emit('room:create', name)
-  }
 
-  const watchRoomList = () => {
+  const getRooms = useCallback(() => {
     socket.emit('room:get_list')
-    socket.on('room:update_list', (rooms) => {
+  }, [])
 
-      console.log(rooms)
 
-      dispatch(chatActions.updateRoomsList(rooms))
-    })
-  }
+  const getRoomMessages = useCallback((currentRoom: number | null) => {
+    socket.emit('room:get_messages', currentRoom)
+  }, [])
 
 
   const ws = {
-    userJoin,
+    socketInitialize,
     updateUserList,
     createRoom,
-    watchRoomList
+    getRoomMessages,
+    getRooms,
+    sendMessage
   }
 
   return (

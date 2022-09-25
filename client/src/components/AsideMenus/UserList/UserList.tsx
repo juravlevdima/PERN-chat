@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { useAppSelector } from '../../hooks/reduxHooks'
+import { useAppSelector } from '../../../hooks/reduxHooks'
 
 const UserList: FC = () => {
   const { userList } = useAppSelector((s) => s.chat)
