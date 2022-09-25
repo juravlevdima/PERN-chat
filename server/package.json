@@ -5,7 +5,7 @@
   "main": "src/server.ts",
   "scripts": {
     "build": "tsc",
-    "start": "tsc && node build/server.js",
+    "start": "node build/server.js",
     "dev": "nodemon src/server.ts"
   },
   "license": "ISC",
