@@ -9,7 +9,9 @@
     "server:start": "yarn --cwd server run start",
     "client:dev": "yarn --cwd client run dev",
     "client:start": "yarn --cwd client run start",
-    "dev": "concurrently \"yarn run server:dev\" \"yarn run client:dev\" "
+    "dev": "concurrently \"yarn run server:dev\" \"yarn run client:dev\" ",
+    "start": "concurrently \"yarn run server:start\" \"yarn run client:start\" ",
+    "heroku-postbuild": "yarn run setup"
   },
   "author": "Juravlev D",
   "license": "ISC",
