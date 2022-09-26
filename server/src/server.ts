@@ -30,8 +30,10 @@ passport.use('jwt', jwtStrategy)
 
 app.use('/api/v1', router)
 
+console.log(path.join(process.cwd(), "../client/build"))
+
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.resolve("client/build")))
+  app.use(express.static(path.join(process.cwd(), "../client/build")))
   app.get("/*", (req, res) => {
     res.sendFile(path.resolve("client/build/index.html"))
   })
