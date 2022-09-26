@@ -11,8 +11,8 @@
     "client:start": "cross-env NODE_ENV=production yarn --cwd client run start",
     "dev": "concurrently \"yarn run server:dev\" \"yarn run client:dev\" ",
     "start": "concurrently \"yarn run server:start\" \"yarn run client:start\" ",
-    "heroku-prebuild": "yarn --cwd server install --dev-dependencies && yarn --cwd client install --dev-dependencies",
-    "heroku-postbuild": "yarn --cwd client install && yarn --cwd server install && yarn --cwd server run build && yarn --cwd client run build"
+    "heroku-prebuild": "yarn --cwd client install && yarn --cwd server install",
+    "heroku-postbuild": "yarn --cwd server run build && yarn --cwd client run build"
   },
   "author": "Juravlev D",
   "license": "ISC",
