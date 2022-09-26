@@ -12,6 +12,7 @@ import errorHandler from './middleware/errorHandlingMiddleware'
 import defineModels from './models/defineModels'
 import jwtStrategy from './services/passport'
 import listenSocketEndpoints from './socket/socket.io'
+import path from 'path'
 
 dotenv.config()
 const port = process.env.PORT || 8080
@@ -28,6 +29,13 @@ passport.initialize()
 passport.use('jwt', jwtStrategy)
 
 app.use('/api/v1', router)
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.resolve("client/build")))
+  app.get("/*", (req, res) => {
+    res.sendFile(path.resolve("client/build/index.html"))
+  })
+}
 
 app.use(errorHandler)
 
