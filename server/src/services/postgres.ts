@@ -3,31 +3,66 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-// export const sequelize = new Sequelize(
-//   // @ts-ignore
-//   process.env.DB_NAME,
-//   process.env.DB_USER,
-//   process.env.DB_PASSWORD,
-//   {
-//     dialect: 'postgres',
-//     host: process.env.DB_HOST,
-//     port: process.env.DB_PORT,
-//     logging: false
-//   }
-// )
 
 // @ts-ignore
-export const sequelize = new Sequelize(process.env.DATABASE_URL,
-  {
-    dialect: 'postgres',
-    logging: false,
-    dialectOptions: {
-      ssl: {
-        rejectUnauthorized: false
+export let sequelize
+
+if (process.env.DATABASE_ENV === 'uri') {
+  sequelize = new Sequelize(
+    // @ts-ignore
+    process.env.DATABASE_URL,
+    {
+      dialect: 'postgres',
+      logging: false,
+      dialectOptions: {
+        ssl: {
+          rejectUnauthorized: false
+        }
       }
     }
-  }
-)
+  )
+} else if (process.env.DATABASE_ENV === 'local') {
+  sequelize = new Sequelize(
+    //@ts-ignore
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
+    {
+      dialect: 'postgres',
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      logging: false
+    }
+  )
+}
+
+// export const sequelize = new Sequelize(
+// @ts-ignore
+// process.env.DB_NAME,
+// process.env.DB_USER,
+// process.env.DB_PASSWORD,
+// {
+//   dialect: 'postgres',
+//   host: process.env.DB_HOST,
+//   port: process.env.DB_PORT,
+//   logging: false
+// }
+// )
+
+
+// export const sequelize = new Sequelize(
+//   // @ts-ignore
+//   process.env.DATABASE_URL,
+//   {
+//     dialect: 'postgres',
+//     logging: false,
+//     dialectOptions: {
+//       ssl: {
+//         rejectUnauthorized: false
+//       }
+//     }
+//   }
+// )
 
 const dbConnect = async (): Promise<void> => {
   try {
@@ -35,7 +70,7 @@ const dbConnect = async (): Promise<void> => {
     await sequelize.sync()
     console.log('DB is successfully connected')
   } catch (e: unknown) {
-    const message = e instanceof Error ? e.message : "DB unknown error"
+    const message = e instanceof Error ? e.message : 'DB unknown error'
     console.log('DB connect ERROR\n', message)
   }
 }

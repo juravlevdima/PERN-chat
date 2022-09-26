@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "setup": "yarn && yarn --cwd client install && yarn --cwd server install",
-    "server:dev": "yarn --cwd server run dev",
-    "server:start": "yarn --cwd server run start",
-    "client:dev": "yarn --cwd client run dev",
-    "client:start": "yarn --cwd client run start",
+    "server:dev": "cross-env NODE_ENV=development yarn --cwd server run dev",
+    "server:start": "cross-env NODE_ENV=production yarn --cwd server run start",
+    "client:dev": "cross-env NODE_ENV=development yarn --cwd client run dev",
+    "client:start": "cross-env NODE_ENV=production yarn --cwd client run start",
     "dev": "concurrently \"yarn run server:dev\" \"yarn run client:dev\" ",
     "start": "concurrently \"yarn run server:start\" \"yarn run client:start\" ",
+    "heroku-prebuild": "yarn install --dev-dependencies",
     "heroku-postbuild": "yarn --cwd client install && yarn --cwd server install && yarn --cwd server run build && yarn --cwd client run build"
   },
   "author": "Juravlev D",
