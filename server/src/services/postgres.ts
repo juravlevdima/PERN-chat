@@ -17,7 +17,17 @@ dotenv.config()
 // )
 
 // @ts-ignore
-export const sequelize = new Sequelize(process.env.DATABASE_URL, {"ssl": true})
+export const sequelize = new Sequelize(process.env.DATABASE_URL,
+  {
+    dialect: 'postgres',
+    logging: false,
+    dialectOptions: {
+      ssl: {
+        rejectUnauthorized: false
+      }
+    }
+  }
+)
 
 const dbConnect = async (): Promise<void> => {
   try {
