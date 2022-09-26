@@ -11,7 +11,7 @@
     "client:start": "yarn --cwd client run start",
     "dev": "concurrently \"yarn run server:dev\" \"yarn run client:dev\" ",
     "start": "concurrently \"yarn run server:start\" \"yarn run client:start\" ",
-    "postinstall": "yarn --cwd client install && yarn --cwd server install && cd server yarn run build && yarn --cwd client run build"
+    "postinstall": "yarn --cwd client install && yarn --cwd server install && yarn --cwd server run build && yarn --cwd client run build"
   },
   "author": "Juravlev D",
   "license": "ISC",

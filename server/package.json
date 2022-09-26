@@ -22,9 +22,8 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.21.6",
     "socket.io": "^4.5.2",
-    "typescript": "^4.8.3"
-  },
-  "devDependencies": {
+    "typescript": "^4.8.3",
+
     "@types/bcrypt": "^5.0.0",
     "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.12",
@@ -36,5 +35,8 @@
     "@types/socket.io": "^3.0.2",
     "nodemon": "^2.0.19",
     "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+
   }
 }
