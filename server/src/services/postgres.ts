@@ -3,9 +3,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-
-// @ts-ignore
-export let sequelize
+export let sequelize: Sequelize
 
 if (process.env.DATABASE_ENV === 'uri') {
   sequelize = new Sequelize(
@@ -35,34 +33,6 @@ if (process.env.DATABASE_ENV === 'uri') {
     }
   )
 }
-
-// export const sequelize = new Sequelize(
-// @ts-ignore
-// process.env.DB_NAME,
-// process.env.DB_USER,
-// process.env.DB_PASSWORD,
-// {
-//   dialect: 'postgres',
-//   host: process.env.DB_HOST,
-//   port: process.env.DB_PORT,
-//   logging: false
-// }
-// )
-
-
-// export const sequelize = new Sequelize(
-//   // @ts-ignore
-//   process.env.DATABASE_URL,
-//   {
-//     dialect: 'postgres',
-//     logging: false,
-//     dialectOptions: {
-//       ssl: {
-//         rejectUnauthorized: false
-//       }
-//     }
-//   }
-// )
 
 const dbConnect = async (): Promise<void> => {
   try {
