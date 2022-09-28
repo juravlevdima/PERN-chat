@@ -31,6 +31,7 @@ const SocketProvider: FC<PropsWithChildren> = ({ children }) => {
     })
     socket.on('room:update_room_messages', (messages: IMessage[]) => {
       dispatch(chatActions.setRoomMessages(messages))
+      dispatch(chatActions.switchLoading(false))
     })
   }, [dispatch, user])
 

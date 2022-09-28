@@ -1,15 +1,15 @@
 {
   "name": "client",
-  "version": "0.1.0",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Client for |Chat with PERN Stack and Socket.io|",
+  "author": "Juravlev D",
+  "license": "ISC",
   "scripts": {
     "start": "cross-env NODE_ENV=production webpack serve --open",
     "dev": "cross-env NODE_ENV=development webpack serve --open",
     "build": "cross-env NODE_ENV=production webpack",
     "lint:fix": "eslint './src/**/*.{ts,tsx,js,jsx}' --fix"
   },
-  "author": "Juravlev D",
-  "license": "ISC",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^0.27.2",

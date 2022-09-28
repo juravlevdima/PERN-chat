@@ -22,3 +22,5 @@ lerna-debug.log*
 
 client/build
 server/build
+
+/backup

@@ -1,21 +1,22 @@
 {
-  "name": "pern",
-  "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
+  "name": "pern-chat",
+  "version": "0.2.0",
+  "description": "Chat with PERN Stack and Socket.io",
+  "author": "Juravlev D",
+  "license": "ISC",
   "scripts": {
     "setup": "yarn && yarn --cwd client install && yarn --cwd server install",
+    "build": "yarn --cwd server run build && yarn --cwd client run build",
     "server:dev": "cross-env NODE_ENV=development yarn --cwd server run dev",
     "server:start": "cross-env NODE_ENV=production yarn --cwd server run start",
     "client:dev": "cross-env NODE_ENV=development yarn --cwd client run dev",
     "client:start": "cross-env NODE_ENV=production yarn --cwd client run start",
     "dev": "concurrently \"yarn run server:dev\" \"yarn run client:dev\" ",
     "start": "concurrently \"yarn run server:start\" \"yarn run client:start\" ",
+
     "heroku-prebuild": "yarn --cwd client install && yarn --cwd server install",
-    "heroku-postbuild": "yarn --cwd server run build && yarn --cwd client run build"
+    "heroku-postbuild": "yarn run build"
   },
-  "author": "Juravlev D",
-  "license": "ISC",
   "dependencies": {
     "concurrently": "^7.4.0",
     "cross-env": "^7.0.3"

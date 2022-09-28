@@ -1,14 +1,14 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/server.ts",
+  "description": "Server for |Chat with PERN Stack and Socket.io|",
+  "author": "Juravlev D",
+  "license": "ISC",
   "scripts": {
     "build": "cross-env NODE_ENV=production tsc",
     "start": "node build/server.js",
     "dev": "cross-env NODE_ENV=development nodemon src/server.ts"
   },
-  "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
@@ -39,5 +39,10 @@
   },
   "devDependencies": {
 
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "build"
+    ]
   }
 }

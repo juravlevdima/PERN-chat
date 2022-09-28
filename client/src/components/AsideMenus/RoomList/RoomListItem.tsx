@@ -11,9 +11,13 @@ type propTypes = {
 const RoomListItem: FC<propTypes> = ({ room, currentRoom }) => {
   const dispatch = useAppDispatch()
 
+  const changeRoomHandler = () => {
+    dispatch(changeRoom(room, currentRoom))
+  }
+
   return (
     <li className={currentRoom === room.id ? 'font-bold' : ''}>
-      <button onClick={() => dispatch(changeRoom(room, currentRoom))}>
+      <button onClick={changeRoomHandler}>
         {room.name}
       </button>
     </li>

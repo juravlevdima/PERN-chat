@@ -7,13 +7,15 @@ interface IChatState {
   roomsList: Array<IRoom>
   currentRoom: number | null
   roomMessages: Array<IMessage>
+  isRoomLoading: boolean
 }
 
 const initialState: IChatState = {
   userList: [],
   roomsList: [],
   currentRoom: null,
-  roomMessages: []
+  roomMessages: [],
+  isRoomLoading: false
 }
 
 const chatSlice = createSlice({
@@ -31,6 +33,9 @@ const chatSlice = createSlice({
     },
     setRoomMessages(state, action: PayloadAction<IMessage[]>) {
       state.roomMessages = action.payload
+    },
+    switchLoading(state, action: PayloadAction<boolean>) {
+      state.isRoomLoading = action?.payload
     }
   }
 })
