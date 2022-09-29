@@ -1,13 +1,16 @@
-import { FC, useEffect } from 'react'
+import { FC, useContext, useEffect } from 'react'
 import AppRoutes from './AppRoutes'
 import { useAppDispatch, useAppSelector } from './hooks/reduxHooks'
 import { authenticate, checkToken } from './store/user/user.actions'
 import Spinner from './components/common/Spinner'
+import { ThemeContext } from './components/Providers/ThemeProvider'
+import { IThemeContext } from './types/theme.types'
 
 
 const App: FC = () => {
   const dispatch = useAppDispatch()
   const { isLoading, token } = useAppSelector((s) => s.user)
+  const { theme } = useContext(ThemeContext) as IThemeContext
 
   useEffect(() => {
     if (!token) {
@@ -17,11 +20,15 @@ const App: FC = () => {
     }
   }, [dispatch, token])
 
-  if (isLoading) {
-    return <Spinner/>
-  } else {
-    return <AppRoutes/>
-  }
+
+  return (
+    <div className={theme}>
+      {isLoading
+        ? <Spinner/>
+        : <AppRoutes/>
+      }
+    </div>
+  )
 }
 
 export default App

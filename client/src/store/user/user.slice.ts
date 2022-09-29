@@ -41,6 +41,11 @@ const userSlice = createSlice({
       state.isAuth = false
       state.user = null
       state.error = action.payload
+    },
+    signOut(state) {
+      state.isAuth = false
+      state.user = null
+      state.token = null
     }
   }
 })

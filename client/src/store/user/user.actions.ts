@@ -27,3 +27,8 @@ export const login = (email: string, password: string) => (dispatch: AppDispatch
     .then(({ data }) => dispatch((userActions.userFetchingSuccess(data.user))))
     .catch((e) => dispatch(userActions.userFetchingError(e?.response?.data?.message || 'Неизвестная ошибка')))
 }
+
+export const signOut = () => {
+  cookies.remove('token')
+  return userActions.signOut()
+}

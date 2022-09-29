@@ -8,6 +8,7 @@ import store from './store'
 import './style/tailwind.css'
 import './style/style.scss'
 import SocketProvider from './socket/SocketProvider'
+import ThemeProvider from './components/Providers/ThemeProvider'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -18,7 +19,9 @@ root.render(
   <Provider store={store}>
     <BrowserRouter>
       <SocketProvider>
-        <App/>
+        <ThemeProvider>
+          <App/>
+        </ThemeProvider>
       </SocketProvider>
     </BrowserRouter>
   </Provider>,

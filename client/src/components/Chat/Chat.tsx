@@ -14,7 +14,7 @@ const Chat: FC = () => {
   }
 
   return (
-    <div className="w-3/5 bg-gray-100 flex flex-col justify-between">
+    <div className="w-3/5 flex flex-col justify-between bg-gray-100 dark-theme dark:bg-dark-3">
       <div>
         <h2>chat</h2>
         {

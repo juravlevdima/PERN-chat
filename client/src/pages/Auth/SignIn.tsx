@@ -16,11 +16,10 @@ const SignIn: FC = () => {
   }
 
   return (
-    <div className="absolute top-0 bg-white z-50">
+    <div className="absolute top-0 z-50 dark-theme dark:bg-dark-2">
       <div className="flex items-center justify-center h-screen w-screen">
-        <div className="w-4/5 md:w-1/2 lg:w-1/3 p-4 rounded-lg custom-shadow">
-          <div className="text-center text-xl font-semibold pb-2">Вход</div>
-          <hr className="mb-2"/>
+        <div className="w-4/5 md:w-1/2 lg:w-1/3 p-4 rounded-lg custom-shadow dark:bg-dark-3">
+          <div className="text-center text-xl font-semibold mb-3">Вход</div>
           <input
             autoFocus={true}
             type="text"
@@ -36,7 +35,6 @@ const SignIn: FC = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <hr/>
           <div className="flex justify-center text-center my-4">
             <Link to="/sign-up" className={`${style.button} bg-blue-700 hover:bg-blue-900 mr-3`}>
               Регистрация

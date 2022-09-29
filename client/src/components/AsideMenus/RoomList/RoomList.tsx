@@ -9,19 +9,21 @@ const RoomList: FC = () => {
   const [newRoom, setNewRoom] = useState('')
 
   return (
-    <div className="w-1/5">
-      <h2>Rooms:</h2>
-      <label>
-        <span className="font-semibold">add room:</span>
-        <input value={newRoom} onChange={(e) => setNewRoom(e.target.value)} className="border border-black" type="text"/>
-      </label>
-      <button onClick={() => createRoom(newRoom)} className="bg-green-600">Add</button>
+    <div className="w-1/5 pt-4 bg-gray-200 dark-theme dark:bg-dark-2">
+      <h2 className="mb-3 text-center text-xl font-semibold italic">Rooms:</h2>
+      <div className="pl-4">
+        <label>
+          <span className="font-semibold">add room:</span>
+          <input value={newRoom} onChange={(e) => setNewRoom(e.target.value)} className="border border-black" type="text"/>
+        </label>
+        <button onClick={() => createRoom(newRoom)} className="bg-green-600">Add</button>
 
-      <ul>
-        {roomsList.map((room) => (
-          <RoomListItem key={room.id} room={room} currentRoom={currentRoom}/>
-        ))}
-      </ul>
+        <ul>
+          {roomsList.map((room) => (
+            <RoomListItem key={room.id} room={room} currentRoom={currentRoom}/>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }
