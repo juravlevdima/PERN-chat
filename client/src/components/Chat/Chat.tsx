@@ -1,44 +1,41 @@
-import { FC, useContext, useState } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import { useAppSelector } from '../../hooks/reduxHooks'
-import { ISocketContext, SocketContext } from '../../socket/SocketProvider'
 import Spinner from '../common/Spinner'
+import ChatInput from './ChatInput'
+import Message from './Message'
 
 const Chat: FC = () => {
-  const { sendMessage } = useContext(SocketContext) as ISocketContext
-  const { roomMessages, isRoomLoading } = useAppSelector((s) => s.chat)
-  const [text, setText] = useState('')
+  const { roomMessages, isRoomLoading, currentRoom, roomsList } = useAppSelector((s) => s.chat)
+  const userId = useAppSelector((s) => s.user.user?.id)
+  const messageListRef = useRef<HTMLDivElement>(null)
 
-  const sendMessageHandler = () => {
-    sendMessage(text.trim())
-    setText('')
-  }
+  useEffect(() => {
+    if (messageListRef.current) {
+      messageListRef.current.scrollTop = messageListRef.current.scrollHeight
+    }
+  }, [roomMessages])
 
   return (
-    <div className="w-3/5 flex flex-col justify-between bg-gray-100 dark-theme dark:bg-dark-3">
-      <div>
-        <h2>chat</h2>
+    <div className="w-3/5 flex flex-col bg-gray-100 dark-theme dark:bg-dark-3">
+      <h2 className="font-semibold text-xl text-center italic py-2">
+        {currentRoom && <span>Room: </span>}
+        <span>{roomsList.find((room) => room.id === currentRoom)?.name}</span>
+      </h2>
+      <div ref={messageListRef} className="chat-height-limit">
         {
           isRoomLoading
             ? <Spinner />
-            : <ul>
+            : <ul className="flex flex-col items-start px-8">
               {
                 roomMessages?.map((message) => (
-                  <li key={message.id}>
-                    <span className="font-semibold mr-2">{message.user?.name}:</span>
-                    <span>{message.text}</span>
-                  </li>
+                  <Message message={message} key={message.id} userId={userId} />
                 ))
               }
             </ul>
         }
       </div>
 
-      <div>
-        <input value={text} onChange={(e) => setText(e.target.value)} type="text" className="border border-black"/>
-        <button disabled={!text} onClick={sendMessageHandler} className="bg-green-600 disabled:bg-gray-400">
-          Send
-        </button>
-      </div>
+      {currentRoom && <ChatInput/>}
     </div>
   )
 }

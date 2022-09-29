@@ -1,0 +1,41 @@
+/* Mozilla Firefox */
+* {
+  scrollbar-width: thin;          /* "auto" or "thin" */
+  scrollbar-color: #666 rgb(48, 49, 52);   /* scroll thumb and track */
+}
+
+
+/* IE */
+* {
+  scrollbar-base-color: #666;
+  scrollbar-arrow-color: white;
+}
+
+
+/* Webkit */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  -webkit-box-shadow: 5px 5px 5px -5px rgba(40, 40, 40, 0.2) inset;
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(180deg, rgb(80, 80, 80), rgb(60, 60, 60));
+  &:hover {
+    background: linear-gradient(180deg, rgb(100, 100, 100), rgb(80, 80, 80));
+  }
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgb(200, 200, 200), rgb(220, 220, 220));
+  &:hover {
+    background: linear-gradient(180deg, rgb(180, 180, 180), rgb(200, 200, 200));
+  }
+}

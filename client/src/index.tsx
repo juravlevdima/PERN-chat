@@ -5,10 +5,12 @@ import { Provider } from 'react-redux'
 import App from './App'
 import store from './store'
 
-import './style/tailwind.css'
-import './style/style.scss'
 import SocketProvider from './socket/SocketProvider'
 import ThemeProvider from './components/Providers/ThemeProvider'
+
+import './style/tailwind.css'
+import './style/style.scss'
+import './style/scrollbar.scss'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

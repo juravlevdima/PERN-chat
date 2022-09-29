@@ -9,7 +9,7 @@ const RoomList: FC = () => {
   const [newRoom, setNewRoom] = useState('')
 
   return (
-    <div className="w-1/5 pt-4 bg-gray-200 dark-theme dark:bg-dark-2">
+    <div className="w-1/5 pt-4 bg-gray-200 dark-theme dark:bg-dark-2 aside-height-limit">
       <h2 className="mb-3 text-center text-xl font-semibold italic">Rooms:</h2>
       <div className="pl-4">
         <label>

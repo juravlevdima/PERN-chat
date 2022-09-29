@@ -37,19 +37,28 @@ const listenSocketEndpoints = (io: Server) => {
 
 
     socket.on('room:send_message', async ({ text, userId, roomId }) => {
+      // const messages = await MessageModel.findAll({
+      //   // @ts-ignore
+      //   where: { roomId },
+      //   attributes: ['id', 'text', 'createdAt'],
+      //   include: [
+      //     { model: RoomModel, as: 'room' },
+      //     { model: UserModel, as: 'user', attributes: ['name'] }
+      //   ]
+      // })
+
       // @ts-ignore
       await MessageModel.create({ text, userId, roomId })
-      const messages = await MessageModel.findAll({
-        // @ts-ignore
-        where: { roomId },
-        attributes: ['id', 'text', 'createdAt'],
-        include: [
-          { model: RoomModel, as: 'room' },
-          { model: UserModel, as: 'user', attributes: ['name'] }
-        ]
-      })
 
-      io.sockets.in(String(roomId)).emit('room:update_room_messages', messages)
+      const room = await RoomModel.findByPk(roomId, {
+        include: {
+          model: MessageModel,
+          as: 'messages',
+          include: [{ model: UserModel, as: 'user', attributes: ['name'] }]
+        }
+      }) as IRoomWithMessages
+
+      io.sockets.in(String(roomId)).emit('room:update_room_messages', room.messages)
     })
 
 

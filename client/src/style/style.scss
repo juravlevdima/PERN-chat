@@ -11,3 +11,13 @@
 .dark-theme {
   @apply dark:text-white transition-bg-color duration-500;
 }
+
+.aside-height-limit {
+  height: calc(100vh - 48px);
+  overflow: auto;
+}
+
+.chat-height-limit {
+  height: calc(100vh - 152px);
+  overflow: auto;
+}
