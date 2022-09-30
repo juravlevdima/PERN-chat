@@ -1,30 +1,34 @@
-import { FC, useContext, useState } from 'react'
-import { ISocketContext, SocketContext } from '../../../socket/SocketProvider'
+import { FC, useState } from 'react'
 import { useAppSelector } from '../../../hooks/reduxHooks'
 import RoomListItem from './RoomListItem'
+import addIcon from '../../../images/icons/add.svg'
+import AddRoomModal from './AddRoomModal'
 
 const RoomList: FC = () => {
-  const { createRoom } = useContext(SocketContext) as ISocketContext
   const { roomsList, currentRoom } = useAppSelector((s) => s.chat)
-  const [newRoom, setNewRoom] = useState('')
+  const [showModal, setShowModal] = useState(false)
 
   return (
-    <div className="w-1/5 pt-4 bg-gray-200 dark-theme dark:bg-dark-2 aside-height-limit">
-      <h2 className="mb-3 text-center text-xl font-semibold italic">Rooms:</h2>
-      <div className="pl-4">
-        <label>
-          <span className="font-semibold">add room:</span>
-          <input value={newRoom} onChange={(e) => setNewRoom(e.target.value)} className="border border-black" type="text"/>
-        </label>
-        <button onClick={() => createRoom(newRoom)} className="bg-green-600">Add</button>
+    <>
+      <div className="w-1/5 pt-4 bg-gray-200 dark-theme dark:bg-dark-2 aside-height-limit relative">
+        <button className="absolute top-0 right-2 hover:brightness-125" onClick={() => setShowModal(true)}>
+          <img src={addIcon} alt="Add"/>
+        </button>
 
-        <ul>
-          {roomsList.map((room) => (
-            <RoomListItem key={room.id} room={room} currentRoom={currentRoom}/>
-          ))}
-        </ul>
+        <h2 className="mb-3 text-center text-xl font-semibold italic">
+          Rooms:
+        </h2>
+        <div className="pl-4">
+          <ul>
+            {roomsList.map((room) => (
+              <RoomListItem key={room.id} room={room} currentRoom={currentRoom}/>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
+
+      <AddRoomModal showModal={showModal} setShowModal={setShowModal}/>
+    </>
   )
 }
 

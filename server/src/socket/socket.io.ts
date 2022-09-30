@@ -37,16 +37,6 @@ const listenSocketEndpoints = (io: Server) => {
 
 
     socket.on('room:send_message', async ({ text, userId, roomId }) => {
-      // const messages = await MessageModel.findAll({
-      //   // @ts-ignore
-      //   where: { roomId },
-      //   attributes: ['id', 'text', 'createdAt'],
-      //   include: [
-      //     { model: RoomModel, as: 'room' },
-      //     { model: UserModel, as: 'user', attributes: ['name'] }
-      //   ]
-      // })
-
       // @ts-ignore
       await MessageModel.create({ text, userId, roomId })
 

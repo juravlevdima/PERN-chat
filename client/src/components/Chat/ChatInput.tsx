@@ -25,7 +25,7 @@ const ChatInput: FC = () => {
         type="text"
         autoFocus={true}
         className="border-2 border-black py-1 px-6 w-full rounded-l-lg shadow-lg outline-none focus:border-blue-600
-            dark:bg-dark-4 dark:border-gray-500 dark-theme"
+            dark:bg-dark-4 dark:border-gray-500 dark:focus:border-blue-600 dark-theme"
         onChange={(e) => setText(e.target.value)}
         onKeyDown={inputKeyHandler}
       />
