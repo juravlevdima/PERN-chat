@@ -3,14 +3,28 @@ import { useAppSelector } from '../../../hooks/reduxHooks'
 import RoomListItem from './RoomListItem'
 import addIcon from '../../../images/icons/add.svg'
 import AddRoomModal from './AddRoomModal'
+import roomsIcon from '../../../images/icons/rooms.svg'
 
 const RoomList: FC = () => {
   const { roomsList, currentRoom } = useAppSelector((s) => s.chat)
   const [showModal, setShowModal] = useState(false)
+  const [showRooms, setShowRooms] = useState(false)
 
   return (
     <>
-      <div className="w-1/5 pt-4 bg-gray-200 dark-theme dark:bg-dark-2 aside-height-limit relative">
+      <button
+        className=" flex items-center sm:hidden absolute top-14 left-2 hover:brightness-125"
+        onClick={() => setShowRooms(true)}
+      >
+        <img className="mr-2" src={roomsIcon} alt="Users"/>
+        <span>{roomsList.length}</span>
+      </button>
+
+      <div
+        onClick={() => setShowRooms(false)}
+        className={`${showRooms ? 'block w-96' : 'hidden'}
+          sm:block w-1/5 pt-4 bg-gray-200 dark-theme dark:bg-dark-2 aside-height-limit relative`}
+      >
         <button className="absolute top-0 right-2 hover:brightness-125" onClick={() => setShowModal(true)}>
           <img src={addIcon} alt="Add"/>
         </button>

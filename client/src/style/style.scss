@@ -21,3 +21,21 @@
   height: calc(100vh - 152px);
   overflow: auto;
 }
+
+.modal {
+  &-enter {
+    opacity: 0;
+  };
+  &-enter-active {
+    opacity: 1;
+    transition: 300ms;
+  };
+  &-exit {
+    opacity: 1;
+  };
+  &-exit-active {
+    opacity: 0;
+    transition: 300ms;
+  }
+}
+

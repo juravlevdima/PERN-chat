@@ -16,7 +16,7 @@ const Chat: FC = () => {
   }, [roomMessages])
 
   return (
-    <div className="w-3/5 flex flex-col bg-gray-100 dark-theme dark:bg-dark-3">
+    <div className="w-full sm:w-3/5 flex flex-col bg-gray-100 dark-theme dark:bg-dark-3">
       <h2 className="font-semibold text-xl text-center italic py-2">
         {currentRoom && <span>Room: </span>}
         <span>{roomsList.find((room) => room.id === currentRoom)?.name}</span>

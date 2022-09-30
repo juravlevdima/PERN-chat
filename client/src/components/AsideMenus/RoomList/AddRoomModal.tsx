@@ -24,10 +24,14 @@ const AddRoomModal: FC<propTypes> = ({ showModal, setShowModal }) => {
       in={showModal}
       nodeRef={nodeRef}
       timeout={300}
-      classNames="addRoomModal"
+      classNames="modal"
       unmountOnExit
     >
-      <div className="absolute top-0 left-0 bottom-0 right-0 z-40 bg-modal" onMouseDown={() => setShowModal(false)}>
+      <div
+        ref={nodeRef}
+        className="absolute top-0 left-0 bottom-0 right-0 z-40 bg-modal"
+        onMouseDown={() => setShowModal(false)}
+      >
         <div
           onMouseDown={(e) => e.stopPropagation()}
           className="absolute top-1/2 left-1/2 z-50 flex flex-col rounded-lg shadow-lg w-11/12 sm:w-5/6 lg:w-1/2 max-w-2xl
