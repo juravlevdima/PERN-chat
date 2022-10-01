@@ -21,6 +21,11 @@ const RoomList: FC = () => {
         <span>{roomsList.length}</span>
       </button>
 
+      <div
+        className={`absolute top-0 bottom-0 left-0 right-0 bg-modal ${showRooms ? 'block' : 'hidden'}`}
+        onClick={() => setShowRooms(false)}
+      />
+
       <aside
         onClick={() => setShowRooms(false)}
         className={`${showRooms ? styles.mobileRoomList : 'hidden'}

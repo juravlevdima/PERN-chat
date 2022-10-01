@@ -17,8 +17,11 @@ const Chat: FC = () => {
 
   return (
     <div className="w-full sm:w-3/5 flex flex-col bg-gray-100 dark-theme dark:bg-dark-3">
-      <h2 className="font-semibold text-xl text-center italic py-2">
-        {currentRoom && <span>Room: </span>}
+      <h2 className="font-semibold text-xl text-center italic py-2 break-all">
+        {currentRoom
+          ? <span>Room: </span>
+          : <span>...Choose a Room...</span>
+        }
         <span>{roomsList.find((room) => room.id === currentRoom)?.name}</span>
       </h2>
       <div ref={messageListRef} className="chat-height-limit">

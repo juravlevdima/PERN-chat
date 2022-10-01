@@ -22,7 +22,7 @@ const SignIn: FC = () => {
           <div className="text-center text-xl font-semibold mb-3">Вход</div>
           <input
             autoFocus={true}
-            type="text"
+            type="email"
             placeholder="Введите email"
             className={style.input}
             onChange={(e) => setEmail(e.target.value)}

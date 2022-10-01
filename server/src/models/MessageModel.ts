@@ -12,7 +12,7 @@ const MessageModel = sequelize.define<IMessageModel>('message', {
     primaryKey: true,
     autoIncrement: true
   },
-  text: { type: DataTypes.STRING, allowNull: false }
+  text: { type: DataTypes.STRING(1000), allowNull: false }
 })
 
 export default MessageModel

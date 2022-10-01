@@ -19,7 +19,7 @@ const RoomListItem: FC<propTypes> = ({ room, currentRoom }) => {
     <li className={`pl-8 text-xl mb-3 ${currentRoom === room.id && 'font-bold scale-105'}`}>
       <button className="hover:scale-110" onClick={changeRoomHandler}>
         <span className="italic font-bold"># </span>
-        <span>{room.name}</span>
+        <span className="break-all">{room.name}</span>
       </button>
     </li>
   )

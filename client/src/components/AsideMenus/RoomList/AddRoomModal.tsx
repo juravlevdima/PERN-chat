@@ -61,8 +61,9 @@ const AddRoomModal: FC<propTypes> = ({ showModal, setShowModal }) => {
           </div>
           <div className="px-6 py-2 flex justify-end text-white">
             <button
-              className="px-3 py-1 rounded-md bg-green-600 hover:bg-green-700 mr-3"
+              className="px-3 py-1 rounded-md bg-green-600 hover:bg-green-700 disabled:bg-gray-600 mr-3"
               onClick={createRoomHandler}
+              disabled={!roomName.trim()}
             >
               Create
             </button>
