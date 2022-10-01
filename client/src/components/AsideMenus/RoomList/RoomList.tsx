@@ -4,6 +4,7 @@ import RoomListItem from './RoomListItem'
 import addIcon from '../../../images/icons/add.svg'
 import AddRoomModal from './AddRoomModal'
 import roomsIcon from '../../../images/icons/rooms.svg'
+import styles from './RoomList.module.scss'
 
 const RoomList: FC = () => {
   const { roomsList, currentRoom } = useAppSelector((s) => s.chat)
@@ -13,17 +14,17 @@ const RoomList: FC = () => {
   return (
     <>
       <button
-        className=" flex items-center sm:hidden absolute top-14 left-2 hover:brightness-125"
-        onClick={() => setShowRooms(true)}
+        className="flex items-center sm:hidden absolute top-14 left-2 hover:brightness-125 z-30"
+        onClick={() => setShowRooms(!showRooms)}
       >
         <img className="mr-2" src={roomsIcon} alt="Users"/>
         <span>{roomsList.length}</span>
       </button>
 
-      <div
+      <aside
         onClick={() => setShowRooms(false)}
-        className={`${showRooms ? 'block w-96' : 'hidden'}
-          sm:block w-1/5 pt-4 bg-gray-200 dark-theme dark:bg-dark-2 aside-height-limit relative`}
+        className={`${showRooms ? styles.mobileRoomList : 'hidden'}
+          sm:block sm:w-1/5 pt-4 bg-gray-200 dark-theme dark:bg-dark-2 aside-height-limit sm:relative`}
       >
         <button className="absolute top-0 right-2 hover:brightness-125" onClick={() => setShowModal(true)}>
           <img src={addIcon} alt="Add"/>
@@ -39,7 +40,7 @@ const RoomList: FC = () => {
             ))}
           </ul>
         </div>
-      </div>
+      </aside>
 
       <AddRoomModal showModal={showModal} setShowModal={setShowModal}/>
     </>
