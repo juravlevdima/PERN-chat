@@ -51,6 +51,7 @@ function configurePlugins() {
     new GenerateSW({
       clientsClaim: true,
       skipWaiting: true,
+      disableDevLogs: true
     }),
     new CopyPlugin({
       patterns: [

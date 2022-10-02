@@ -1,8 +1,8 @@
 {
   "name": "PERN Stack Chat",
   "short_name": "PERN Chat",
-  "theme_color": "rgba(57,58,61,1)",
-  "background_color": "rgba(48,49,52,1)",
+  "theme_color": "#393a3d",
+  "background_color": "#303134",
   "display": "standalone",
   "orientation": "portrait",
   "start_url": ".",
@@ -41,6 +41,12 @@
       "src": "/icons/postgresql-512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/icons/maskable_icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
