@@ -1,5 +1,8 @@
 # Chat made with PERN Stack & Socket.IO
 
+### Demo
+👉 https://chat-socket-pern.herokuapp.com/
+
 ## Built using
 * Typescript
 * PostgreSQL | Sequelize
