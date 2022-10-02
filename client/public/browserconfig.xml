@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+  <msapplication>
+    <tile>
+      <square70x70logo src="/icons/postgresql-70.png"/>
+      <square150x150logo src="/icons/postgresql-150.png"/>
+      <square310x310logo src="/icons/postgresql-310.png"/>
+      <TileColor>#393a3d</TileColor>
+    </tile>
+  </msapplication>
+</browserconfig>

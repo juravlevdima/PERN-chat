@@ -1,0 +1,46 @@
+{
+  "name": "PERN Stack Chat",
+  "short_name": "PERN Chat",
+  "theme_color": "rgba(57,58,61,1)",
+  "background_color": "rgba(48,49,52,1)",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": ".",
+  "icons": [
+    {
+      "src": "/icons/postgresql-16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/postgresql-24.png",
+      "sizes": "24x24",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/postgresql-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/postgresql-64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/postgresql-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/postgresql-256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/postgresql-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

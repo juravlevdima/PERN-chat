@@ -10,21 +10,6 @@
     "dev": "cross-env NODE_ENV=development nodemon src/server.ts"
   },
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.0.2",
-    "express": "^4.18.1",
-    "jsonwebtoken": "^8.5.1",
-    "passport": "^0.6.0",
-    "passport-jwt": "^4.0.0",
-    "pg": "^8.8.0",
-    "pg-hstore": "^2.3.4",
-    "sequelize": "^6.21.6",
-    "socket.io": "^4.5.2",
-    "typescript": "^4.8.3",
-
     "@types/bcrypt": "^5.0.0",
     "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.12",
@@ -34,12 +19,24 @@
     "@types/passport": "^1.0.10",
     "@types/passport-jwt": "^3.0.6",
     "@types/socket.io": "^3.0.2",
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.19",
-    "ts-node": "^10.9.1"
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0",
+    "pg": "^8.8.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.21.6",
+    "socket.io": "^4.5.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.3"
   },
-  "devDependencies": {
-
-  },
+  "devDependencies": {},
   "nodemonConfig": {
     "ignore": [
       "build"
