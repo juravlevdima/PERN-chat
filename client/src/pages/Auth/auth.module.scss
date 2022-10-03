@@ -1,5 +1,5 @@
 .button {
-  @apply transition duration-300 ease-in-out text-white font-semibold py-2 px-8 rounded;
+  @apply transition duration-300 ease-in-out text-white font-semibold py-2 px-3 sm:px-8 rounded;
 }
 
 .input {

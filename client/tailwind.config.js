@@ -19,6 +19,9 @@ module.exports = {
       transitionProperty: {
         'bg-color': 'background-color',
       },
+      zIndex: {
+        '100': '100',
+      }
     },
   },
   plugins: [],

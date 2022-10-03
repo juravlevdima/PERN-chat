@@ -5,7 +5,7 @@ import { authenticate, checkToken } from './store/user/user.actions'
 import Spinner from './components/common/Spinner'
 import { ThemeContext } from './components/Providers/ThemeProvider'
 import { IThemeContext } from './types/theme.types'
-import InstallPWAButton from './components/common/InstallPWAButton'
+import Controls from './components/common/Controls'
 
 
 const App: FC = () => {
@@ -24,7 +24,7 @@ const App: FC = () => {
 
   return (
     <div className={theme}>
-      <InstallPWAButton/>
+      <Controls/>
       {isLoading
         ? <Spinner/>
         : <AppRoutes/>
