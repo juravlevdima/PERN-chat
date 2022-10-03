@@ -8,13 +8,10 @@ const InstallPwaButton: FC = () => {
 
   useEffect(() => {
     const handler = (e: BeforeInstallPromptEvent) => {
-      e.preventDefault()
       setSupportsPWA(true)
       setPromptInstall(e)
     }
     window.addEventListener('beforeinstallprompt', handler)
-
-    // return () => window.removeEventListener('transitionend', handler)
   }, [])
 
   const onClick = (e: MouseEvent<HTMLButtonElement>) => {
