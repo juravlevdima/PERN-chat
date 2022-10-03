@@ -1,14 +1,16 @@
 import { FC, useEffect } from 'react'
-import { Navigate } from 'react-router-dom'
 
 const InstallAppPage: FC = () => {
   useEffect(() => {
     window.addEventListener('beforeinstallprompt', (e) => {
-      e?.prompt()
+      e.preventDefault()
+      setTimeout(() => {
+        e.prompt()
+      }, 500)
     })
   }, [])
 
-  return <Navigate to="/" />
+  return <></>
 }
 
 export default InstallAppPage

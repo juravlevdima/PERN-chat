@@ -2,7 +2,7 @@ import { FC, useEffect, useState, MouseEvent } from 'react'
 import { BeforeInstallPromptEvent } from '../../types/events.types'
 import installIcon from '../../images/icons/install.svg'
 
-const InstallPwaButton: FC = () => {
+const InstallPWAButton: FC = () => {
   const [supportsPWA, setSupportsPWA] = useState(false)
   const [promptInstall, setPromptInstall] = useState<BeforeInstallPromptEvent | null>(null)
 
@@ -39,4 +39,4 @@ const InstallPwaButton: FC = () => {
   )
 }
 
-export default InstallPwaButton
+export default InstallPWAButton
