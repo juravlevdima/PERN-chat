@@ -12,7 +12,7 @@
     "client:dev": "cross-env NODE_ENV=development yarn --cwd client run dev",
     "client:start": "cross-env NODE_ENV=production yarn --cwd client run start",
     "dev": "concurrently \"yarn run server:dev\" \"yarn run client:dev\" ",
-    "start": "concurrently \"yarn run server:start\" \"yarn run client:start\" ",
+    "start": "yarn run server:start",
 
     "heroku-prebuild": "yarn --cwd client install && yarn --cwd server install",
     "heroku-postbuild": "yarn run build"

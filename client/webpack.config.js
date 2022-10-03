@@ -1,7 +1,7 @@
 const path = require('path')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const CopyPlugin = require("copy-webpack-plugin")
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const { GenerateSW } = require('workbox-webpack-plugin')
 
@@ -11,9 +11,9 @@ const isProd = process.env.NODE_ENV === 'production'
 // Configure rules for the style loader:
 function configureCss(modules = false, sass = false) {
   const loaders = [
-    isProd ? MiniCssExtractPlugin.loader : "style-loader",
+    isProd ? MiniCssExtractPlugin.loader : 'style-loader',
     {
-      loader: "css-loader",
+      loader: 'css-loader',
       options: {
         importLoaders: 1,
         modules: modules,
@@ -21,13 +21,13 @@ function configureCss(modules = false, sass = false) {
       },
     },
     {
-      loader: "postcss-loader",
+      loader: 'postcss-loader',
     }
   ]
 
   if (sass) {
     loaders.push({
-      loader: "sass-loader",
+      loader: 'sass-loader',
       options: { sourceMap: !isProd },
     })
   }
@@ -40,25 +40,20 @@ function configureCss(modules = false, sass = false) {
 function configurePlugins() {
   const plugins = [
     new HtmlWebpackPlugin({
-      template: "./public/index.html",
+      template: './public/index.html',
       minify: {
         collapseWhitespace: isProd,
       },
     }),
     new MiniCssExtractPlugin({
-      filename: isProd ? "assets/css/[name].[contenthash].css" : "[name].css",
-    }),
-    new GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true,
-      disableDevLogs: true
+      filename: isProd ? 'assets/css/[name].[contenthash].css' : '[name].css',
     }),
     new CopyPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, "public"),
+          from: path.resolve(__dirname, 'public'),
           globOptions: {
-            ignore: ["**/index.html"]
+            ignore: ['**/index.html']
           },
         },
       ],
@@ -68,9 +63,19 @@ function configurePlugins() {
   if (!isProd) {
     plugins.push(
       new ESLintPlugin({
-        context: path.resolve(__dirname, "./src"),
-        extensions: ["js", "jsx", "ts", "tsx"],
+        context: path.resolve(__dirname, './src'),
+        extensions: ['js', 'jsx', 'ts', 'tsx'],
         quiet: false,
+      })
+    )
+  }
+
+  if (isProd) {
+    plugins.push(
+      new GenerateSW({
+        clientsClaim: true,
+        skipWaiting: true,
+        disableDevLogs: true
       })
     )
   }
@@ -80,7 +85,7 @@ function configurePlugins() {
 
 
 module.exports = {
-  mode: isProd ? "production" : "development",
+  mode: isProd ? 'production' : 'development',
   devServer: {
     historyApiFallback: true,
     port: process.env.PORT || 3000,
@@ -93,23 +98,23 @@ module.exports = {
       },
     },
   },
-  devtool: isProd ? false : "source-map",
+  devtool: isProd ? false : 'source-map',
   entry: {
-    app: path.resolve(__dirname, "./src/index.tsx"),
+    app: path.resolve(__dirname, './src/index.tsx'),
   },
   output: {
     clean: true,
-    path: path.resolve(__dirname, "./build"),
-    filename: isProd ? "assets/js/[name].[contenthash].js" : "[name].js",
+    path: path.resolve(__dirname, './build'),
+    filename: isProd ? 'assets/js/[name].[contenthash].js' : '[name].js',
   },
   performance: {
-    hints: isProd ? "warning" : false,
+    hints: isProd ? 'warning' : false,
     maxEntrypointSize: 512000,
     maxAssetSize: 512000
   },
   optimization: {
     splitChunks: {
-      chunks: "all",
+      chunks: 'all',
       minSize: 10000,
       maxSize: 512000,
     },
@@ -121,9 +126,9 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
-              presets: ["@babel/preset-env"],
+              presets: ['@babel/preset-env'],
             },
           },
         ],
@@ -132,8 +137,8 @@ module.exports = {
         test: /\.(ts|tsx)$/i,
         exclude: /node_modules/,
         use: [
-          "babel-loader",
-          "ts-loader"
+          'babel-loader',
+          'ts-loader'
         ],
       },
       {
@@ -177,7 +182,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx", ".json", ".css", ".scss", ".sass"],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.css', '.scss', '.sass'],
   },
   plugins: configurePlugins(),
 }

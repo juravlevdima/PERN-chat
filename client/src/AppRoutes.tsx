@@ -5,6 +5,7 @@ import SignIn from './pages/Auth/SignIn'
 import PrivateRoute from './components/common/PrivateRoute'
 import OnlyAnonymousRoute from './components/common/OnlyAnonymousRoute'
 import SignUp from './pages/Auth/SignUp'
+import InstallAppPage from './pages/InstallApp/InstallAppPage'
 
 const AppRoutes: FC = () => {
   return (
@@ -12,6 +13,7 @@ const AppRoutes: FC = () => {
       <Route path="/" element={<PrivateRoute><Main/></PrivateRoute>}/>
       <Route path="/sign-in" element={<OnlyAnonymousRoute><SignIn/></OnlyAnonymousRoute>}/>
       <Route path="/sign-up" element={<OnlyAnonymousRoute><SignUp/></OnlyAnonymousRoute>}/>
+      <Route path="/install-app" element={<InstallAppPage/>}/>
       <Route path="*" element={<Navigate to="/" replace/>}/>
     </Routes>
   )
