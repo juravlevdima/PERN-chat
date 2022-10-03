@@ -14,7 +14,7 @@ const InstallPwaButton: FC = () => {
     }
     window.addEventListener('beforeinstallprompt', handler)
 
-    return () => window.removeEventListener('transitionend', handler)
+    // return () => window.removeEventListener('transitionend', handler)
   }, [])
 
   const onClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -22,7 +22,6 @@ const InstallPwaButton: FC = () => {
     if (!promptInstall) {
       return
     }
-
     promptInstall?.prompt()
   }
 
