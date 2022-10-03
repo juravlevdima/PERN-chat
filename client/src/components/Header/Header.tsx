@@ -23,7 +23,7 @@ const Header: FC = () => {
       </div>
       <div className="text-2xl text-center font-semibold italic w-1/3">Chat</div>
       <div className="flex justify-end items-center w-1/3">
-        <InstallPWAButton/>
+        {/* <InstallPWAButton/> */}
         <ThemeButton/>
       </div>
     </header>
