@@ -11,7 +11,7 @@ export interface  IMessage {
   roomId: number
   userId: number
   text: string
-  user: { name: string }
+  user: { name: string, avatar: string }
   createdAt?: string
   updatedAt?: string
 }

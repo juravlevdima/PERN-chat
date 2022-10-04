@@ -96,6 +96,7 @@ module.exports = {
         target: 'http://localhost:8080',
         ws: true,
       },
+      '/static': 'http://localhost:8080',
     },
   },
   devtool: isProd ? false : 'source-map',

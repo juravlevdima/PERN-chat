@@ -32,7 +32,9 @@ const UserList: FC = () => {
           {
             userList.map((user) => (
               <li className="flex justify-center px-3 mb-3" key={user.id}>
-                <div><img className="w-6 mr-2 shrink-0" src={defaultAvatar} alt="Avatar"/></div>
+                <div>
+                  <img className="w-6 mr-2 shrink-0 rounded-full" src={user.avatar || defaultAvatar} alt="Avatar"/>
+                </div>
                 <span className="break-all">{user.name}</span>
               </li>
             ))

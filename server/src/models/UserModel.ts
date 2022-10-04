@@ -8,6 +8,7 @@ interface IUserModel extends Model<InferAttributes<IUserModel>, InferCreationAtt
   email: string
   name: string
   password: string
+  avatar: string
   role: string
 }
 
@@ -20,6 +21,7 @@ const UserModel = sequelize.define<IUserModel>('user', {
   email: { type: DataTypes.STRING, unique: true },
   name: { type: DataTypes.STRING },
   password: { type: DataTypes.STRING },
+  avatar: { type: DataTypes.STRING, defaultValue: '' },
   role: { type: DataTypes.STRING, defaultValue: 'USER' },
 })
 

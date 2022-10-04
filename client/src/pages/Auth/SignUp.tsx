@@ -55,7 +55,8 @@ const SignUp: FC = () => {
             />
             <div className={style.errorMessage}>{errors?.password?.message}</div>
             <div className="flex justify-center text-center my-4">
-              <Link to="/sign-in" className={`${style.button} bg-blue-700 hover:bg-blue-900 mr-3`}
+              <Link to="/sign-in" className={`${style.button} underline text-blue-600
+                hover:bg-blue-100 dark:hover:bg-dark-4 mr-3`}
               >
                 Войти?
               </Link>

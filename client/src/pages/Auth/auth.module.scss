@@ -3,7 +3,7 @@
 }
 
 .input {
-  @apply w-full text-xl text-center border-2 rounded-lg focus:border-blue-500 mb-2;
+  @apply w-full text-xl text-center text-black border-2 rounded-lg focus:border-blue-500 mb-2;
 }
 
 .errorMessage {

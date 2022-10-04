@@ -29,6 +29,7 @@ passport.initialize()
 passport.use('jwt', jwtStrategy)
 
 app.use('/api/v1', router)
+app.use('/static', express.static('imageStorage'))
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(process.cwd(), "../client/build")))

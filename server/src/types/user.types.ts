@@ -3,6 +3,7 @@ export interface IUserPublicData {
   email: string
   role: string
   name: string
+  avatar: string
 }
 
 export interface IJoinedUser {

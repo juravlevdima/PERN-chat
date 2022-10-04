@@ -39,6 +39,7 @@
     "block-spacing": ["warn", "always"],
     "quotes": ["warn", "single"],
     "jsx-quotes": ["warn", "prefer-double"],
+    "jsx-a11y/img-redundant-alt": "off",
     "@typescript-eslint/no-inferrable-types": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "react/no-array-index-key": "warn",

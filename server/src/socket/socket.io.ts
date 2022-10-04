@@ -44,7 +44,7 @@ const listenSocketEndpoints = (io: Server) => {
         include: {
           model: MessageModel,
           as: 'messages',
-          include: [{ model: UserModel, as: 'user', attributes: ['name'] }]
+          include: [{ model: UserModel, as: 'user', attributes: ['name', 'avatar'] }]
         }
       }) as IRoomWithMessages
 
@@ -59,7 +59,7 @@ const listenSocketEndpoints = (io: Server) => {
         include: {
           model: MessageModel,
           as: 'messages',
-          include: [{ model: UserModel, as: 'user', attributes: ['name'] }]
+          include: [{ model: UserModel, as: 'user', attributes: ['name', 'avatar'] }]
         }
       }) as IRoomWithMessages
 
