@@ -22,6 +22,8 @@ lerna-debug.log*
 
 client/build
 server/build
-server/imageStorage
+
+server/imageStorage/*
+!server/imageStorage/.gitKeep
 
 /backup
