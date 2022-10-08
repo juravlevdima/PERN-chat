@@ -4,6 +4,7 @@ import ApiError from '../errors/ApiError'
 import UserModel from '../models/UserModel'
 import bcrypt from 'bcrypt'
 import { IDecodedToken } from '../types/user.types'
+import { deleteImage } from '../utils/functions'
 
 
 export const registration = async (req: Request, res: Response, next: NextFunction) => {
@@ -67,6 +68,12 @@ export const updateProfile = async (req: Request, res: Response, next: NextFunct
   const avatar = file ? `/static/${file}` : ''
 
   const user = await UserModel.findByPk(id)
+  if (!user) return next(ApiError.badRequest('Пользователь не найден'))
+
+  if (user && file) {
+    deleteImage(user.avatar)
+  }
+
   const result = await user?.update({ name, avatar })
 
   if (result) {
