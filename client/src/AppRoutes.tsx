@@ -11,7 +11,7 @@ const AppRoutes: FC = () => {
   return (
     <Routes>
       <Route path="/" element={<PrivateRoute><Main/></PrivateRoute>}/>
-      <Route path="/options" element={<UserOptions/>}/>
+      <Route path="/options" element={<PrivateRoute><UserOptions/></PrivateRoute>}/>
       <Route path="/sign-in" element={<OnlyAnonymousRoute><SignIn/></OnlyAnonymousRoute>}/>
       <Route path="/sign-up" element={<OnlyAnonymousRoute><SignUp/></OnlyAnonymousRoute>}/>
       <Route path="*" element={<Navigate to="/" replace/>}/>

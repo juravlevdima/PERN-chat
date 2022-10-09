@@ -63,7 +63,9 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
 }
 
 export const updateProfile = async (req: Request, res: Response, next: NextFunction) => {
-  const { id, name } = req.body
+  // @ts-ignore
+  const  id = req.user?.id
+  const { name } = req.body
   const file = req.file?.filename
   const avatar = file ? `/static/${file}` : ''
 

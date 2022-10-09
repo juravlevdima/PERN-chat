@@ -6,7 +6,9 @@ const handleJWT = (req: Request, res: Response, next: NextFunction, roles: Array
   return async (err, user) => {
     if (err || !user) return res.status(401).json({ err, message: 'Доступ запрещен!' })
 
-    if (!roles.includes(user.role)) return res.status(401).json({ message: 'Доступ запрещен!' })
+    if (roles.length && !roles.includes(user.role)) {
+      return res.status(401).json({ message: 'Доступ запрещен!' })
+    }
 
     req.user = user
     return next()

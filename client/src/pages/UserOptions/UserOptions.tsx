@@ -32,7 +32,6 @@ const UserOptions: FC = () => {
   const updateProfile = () => {
     const data = new FormData()
     data.append('name', newName)
-    if (user?.id) data.append('id', String(user.id))
     if (image) data.append('avatar', image)
 
     axios({

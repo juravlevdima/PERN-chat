@@ -11,13 +11,13 @@ const storage = multer.diskStorage({
 
 const uploader = multer({
   storage,
-  limits: { fileSize: 2 * 1024 * 1024 },
+  limits: { fileSize: 3 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
-    if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
+    if (file.mimetype.includes('image')) {
       cb(null, true)
     } else {
       cb(null, false)
-      return cb(new Error('Только .png, .jpg и .jpeg формат!'))
+      // return cb(new Error('Только .png, .jpg и .jpeg формат!'))
     }
   },
 })
