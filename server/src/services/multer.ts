@@ -16,8 +16,7 @@ const uploader = multer({
     if (file.mimetype.includes('image')) {
       cb(null, true)
     } else {
-      cb(null, false)
-      // return cb(new Error('Только .png, .jpg и .jpeg формат!'))
+      return cb(new multer.MulterError('LIMIT_UNEXPECTED_FILE'))
     }
   },
 })

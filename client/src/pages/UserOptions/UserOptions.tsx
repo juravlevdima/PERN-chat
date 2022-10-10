@@ -41,7 +41,7 @@ const UserOptions: FC = () => {
       data
     }).then(() => alert('Выполнено'))
       .then(() => window.location.reload())
-      .catch(() => alert('Ошибка'))
+      .catch((e) => alert(e?.response?.data?.message || 'Неизвестная ошибка'))
   }
 
 

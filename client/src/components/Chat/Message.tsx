@@ -14,7 +14,7 @@ const Message: FC<propTypes> = ({ message, userId }) => {
     >
       <div className="shrink-0 pr-4 pt-1">
         <img
-          className="w-10 rounded-full"
+          className="w-10 h-10 rounded-full"
           src={message.user?.avatar || defaultAvatar}
           alt="Avatar"
         />

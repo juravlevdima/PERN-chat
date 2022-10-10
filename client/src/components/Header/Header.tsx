@@ -20,7 +20,7 @@ const Header: FC = () => {
           <img src={signOutIcon} alt="Sign Out"/>
         </button>
         <Link to="/options" className="flex items-center hover:underline">
-          <img className="w-8 rounded-full mr-2" src={user?.avatar || defaultAvatar} alt="User"/>
+          <img className="w-8 h-8 rounded-full mr-2" src={user?.avatar || defaultAvatar} alt="User"/>
           <span className="font-semibold overflow-hidden">{user?.name}</span>
         </Link>
       </div>
