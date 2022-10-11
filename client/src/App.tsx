@@ -26,7 +26,7 @@ const App: FC = () => {
     <div className={theme}>
       <Controls/>
       {isLoading
-        ? <Spinner/>
+        ? <div className="min-h-screen bg-gray-100 dark-theme dark:bg-dark-2"><Spinner/></div>
         : <AppRoutes/>
       }
     </div>
