@@ -1,7 +1,7 @@
 import { FC, useContext, useEffect } from 'react'
 import AppRoutes from './AppRoutes'
 import { useAppDispatch, useAppSelector } from './hooks/reduxHooks'
-import { authenticate, checkToken } from './store/user/user.actions'
+import { authenticate, getTokenFromCookies } from './store/user/user.actions'
 import Spinner from './components/common/Spinner'
 import { ThemeContext } from './components/Providers/ThemeProvider'
 import { IThemeContext } from './types/theme.types'
@@ -15,7 +15,7 @@ const App: FC = () => {
 
   useEffect(() => {
     if (!token) {
-      dispatch(checkToken())
+      dispatch(getTokenFromCookies())
     } else {
       dispatch(authenticate())
     }

@@ -12,7 +12,7 @@ interface IUserState {
 const initialState: IUserState = {
   user: null,
   token: null,
-  isLoading: false,
+  isLoading: true,
   isAuth: false,
   error: null
 }
@@ -23,6 +23,9 @@ const userSlice = createSlice({
   reducers: {
     setToken(state, action: PayloadAction<string>) {
       state.token = action.payload
+    },
+    stopLoading(state) {
+      state.isLoading = false
     },
     userFetching(state) {
       state.isLoading = true

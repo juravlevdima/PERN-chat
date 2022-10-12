@@ -7,9 +7,11 @@ import { userActions } from './user.slice'
 const cookies = new Cookies()
 
 
-export const checkToken = ()  => {
+export const getTokenFromCookies = ()  => {
   const token = cookies.get('token')
-  return userActions.setToken(token)
+  return token
+    ? userActions.setToken(token)
+    : userActions.stopLoading()
 }
 
 
