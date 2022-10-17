@@ -1,4 +1,5 @@
 import { FC, memo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../../hooks/reduxHooks'
 import { IRoom } from '../../../types/chat.types'
 import { changeRoom } from '../../../store/chat/chat.actions'
@@ -10,9 +11,11 @@ type propTypes = {
 
 const RoomListItem: FC<propTypes> = ({ room, currentRoom }) => {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
   const changeRoomHandler = () => {
-    dispatch(changeRoom(room, currentRoom))
+    dispatch(changeRoom(room.id, currentRoom))
+    navigate(`/chat/${room.id}`)
   }
 
   return (

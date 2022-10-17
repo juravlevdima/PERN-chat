@@ -11,6 +11,7 @@ const AppRoutes: FC = () => {
   return (
     <Routes>
       <Route path="/chat" element={<PrivateRoute><Main/></PrivateRoute>}/>
+      <Route path="/chat/:id" element={<PrivateRoute><Main/></PrivateRoute>}/>
       <Route path="/options" element={<PrivateRoute><UserOptions/></PrivateRoute>}/>
       <Route path="/sign-in" element={<OnlyAnonymousRoute><SignIn/></OnlyAnonymousRoute>}/>
       <Route path="/sign-up" element={<OnlyAnonymousRoute><SignUp/></OnlyAnonymousRoute>}/>

@@ -4,7 +4,6 @@ import RoomList from '../../components/AsideMenus/RoomList/RoomList'
 import Chat from '../../components/Chat/Chat'
 import UserList from '../../components/AsideMenus/UserList/UserList'
 import { ISocketContext, SocketContext } from '../../socket/SocketProvider'
-import { useAppSelector } from '../../hooks/reduxHooks'
 
 const Main: FC = () => {
   const {
@@ -13,12 +12,10 @@ const Main: FC = () => {
     getRooms
   } = useContext(SocketContext) as ISocketContext
 
-  const { currentRoom } = useAppSelector((s) => s.chat)
-
   useEffect(() => {
     updateUserList()
     getRooms()
-  }, [updateUserList, getRooms, currentRoom])
+  }, [updateUserList, getRooms])
 
   useEffect(() => {
     socketInitialize()
