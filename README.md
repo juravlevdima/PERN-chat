@@ -1,7 +1,7 @@
 # Chat made with PERN Stack & Socket.IO
 
 ### Demo
-👉 https://chat-socket-pern.herokuapp.com/
+👉 https://pern-chat.onrender.com/
 
 ## Built using
 * Typescript
